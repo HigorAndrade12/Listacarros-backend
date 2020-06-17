@@ -26,25 +26,25 @@ pool.query(sqlCreate, function(error, result) {
 
 module.exports = {
 async create(cor, modelo, placa) {
-    const sql = 'INSERT INTO itensparavenda (cor, modelo, placa) VALUES ($1, $2, $3)';
-    const result = await pool.query(sql, [placa, modelo, placa]);
+    const sql = 'INSERT INTO listacarros (cor, modelo, placa) VALUES ($1, $2, $3)';
+    const result = await pool.query(sql, [cor, modelo, placa]);
     return result.rowCount;
 },
 
 async read() {
-    const sql = `SELECT * FROM carros`;
+    const sql = `SELECT * FROM listacarros`;
     const result = await pool.query(sql);
     return result.rows;
 },
 async update(id, item, valor, tamanho) {
-    const sql = `UPDATE carros
+    const sql = `UPDATE listacarros
     SET carros = $1, valor= $2 , tamanho= $3
     WHERE  id = $4`
     const result = await pool.query(sql,[cor, modelo, placa, id]);
     return result.rowCount;
 },
 async delete(id){
-    const sql = `DELETE FROM carros WHERE id= $1`; 
+    const sql = `DELETE FROM listacarros WHERE id= $1`; 
     const result = await pool.query(sql, [id]);
     return result.rowCount;
 },   
