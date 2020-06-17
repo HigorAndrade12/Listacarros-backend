@@ -1,10 +1,10 @@
 const Pool = require('pg').Pool; 
 
 const pool = new Pool({
-    user: 'pjneyukgbrnkit',
-    password: '8b9c8f81b5a18b2bb2b5f01a2ff9b916d901946eaa9f45dde50b6c955e751bdf',
-    host: 'ec2-18-232-143-90.compute-1.amazonaws.com',
-    database: 'd1t5r0npukksqf',
+    user: 'dllbkimyebfgby',
+    password: 'c5abe23a0dd89526ced04eae47c80b210828f0b905e267c77fa662d4e91c503f',
+    host: 'ec2-52-0-155-79.compute-1.amazonaws.com',
+    database: 'd8jritpi8qe8k0',
     port: '5432',
     ssl: {rejectUnauthorized: false}
 });
@@ -25,7 +25,9 @@ pool.query(sqlCreate, function(error, result) {
 });
 
 module.exports = {
+
 async create(cor, modelo, placa) {
+    console;log(cor, modelo, placa)
     const sql = 'INSERT INTO carros (cor, modelo, placa) VALUES ($1, $2, $3)';
     const result = await pool.query(sql, [cor, modelo, placa]);
     return result.rowCount;
