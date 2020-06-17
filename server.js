@@ -1,9 +1,10 @@
+
 const express = require('express');
 const database = require('./database');
 const cors = require('cors');
 
 const server = express();
-
+// o cors permite que o servidor aceite requisições de qualquer lugar
 server.use(cors());
 server.use(express.json());
 
