@@ -7,11 +7,11 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-server.get('/carros', async function(request, response) {
+server.get('/', async function(request, response) {
    const dados = await database.read();
    return response.json(dados);
 })
-server.post('/carros', async function(request, response) {
+server.post('/', async function(request, response) {
 
     const cor = request.body.cor;
     const modelo = request.body.modelo;
@@ -21,14 +21,14 @@ server.post('/carros', async function(request, response) {
     return response.status(204).send();
 })
 
-server.put('/carros/:id', async function(request, response) { 
+server.put('/:id', async function(request, response) { 
     const id = request.params.id;
     const {cor, modelo, placa} = request.body;
     const result = await database.update(id, cor, modelo, placa);
     return response.status(204).send();
 })
 
-server.delete('/carros/:id', async function(request, response) { 
+server.delete('/:id', async function(request, response) { 
     const id = request.params.id;
     const result = await database.delete(id);
     return response.status(200).send();
