@@ -10,7 +10,7 @@ const pool = new Pool({
 });
 
 const sqlCreate = `
-   CREATE TABLE IF NOT EXISTS itensparavenda 
+   CREATE TABLE IF NOT EXISTS carros
    (
       ID serial primary key,
       cor varchar(50) not null,
