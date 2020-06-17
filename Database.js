@@ -9,37 +9,44 @@ const pool = new Pool({
     ssl: {rejectUnauthorized: false}
 });
 
-/*const sql = `
-    CREATE TABLE IF NOT EXISTS carros
-    (
-        id serial primary key,
-        modelo varchar(50) not null,
-        placa varchar(50) not null,
-        ano int not null
-     )
- `;
- pool.query(sql, (error, result) => {
-   if(error)
-        throw error
-     console.log('Tabela adicionada com sucesso!');
-});*/
-
-/*const sql_insert = `
-         INSERT INTO carros (modelo, placa, ano) VALUES ('Camaro','ABC1245', 2012)
+const sqlCreate = `
+   CREATE TABLE IF NOT EXISTS itensparavenda 
+   (
+      ID serial primary key,
+      cor varchar(50) not null,
+      modelo varchar(50) not null,
+      placa varchar (50) 
+   )
 `;
- pool.query(sql_insert, function(error, result) {
-     if(error)
-         throw error;
-    console.log(result.rowCount);
- })*/
+pool.query(sqlCreate, function(error, result) {
+    if(error)
+     throw error
+    console.log('Tabela criada com sucesso!');
+});
 
- const sql_select = 
- `
- SELECT * FROM  carros
- 
- `;
- pool.query(sql_select, function(error, result) {
-     if(error)
-         throw error;
-    console.log(result.rows);
-    })
+module.exports = {
+async create(cor, modelo, placa) {
+    const sql = 'INSERT INTO itensparavenda (cor, modelo, placa) VALUES ($1, $2, $3)';
+    const result = await pool.query(sql, [placa, modelo, placa]);
+    return result.rowCount;
+},
+
+async read() {
+    const sql = `SELECT * FROM carros`;
+    const result = await pool.query(sql);
+    return result.rows;
+},
+async update(id, item, valor, tamanho) {
+    const sql = `UPDATE carros
+    SET carros = $1, valor= $2 , tamanho= $3
+    WHERE  id = $4`
+    const result = await pool.query(sql,[cor, modelo, placa, id]);
+    return result.rowCount;
+},
+async delete(id){
+    const sql = `DELETE FROM carros WHERE id= $1`; 
+    const result = await pool.query(sql, [id]);
+    return result.rowCount;
+},   
+    
+ }
