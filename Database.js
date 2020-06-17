@@ -8,7 +8,7 @@ const pool = new Pool({
     port: '5432',
     ssl: {rejectUnauthorized: false}
 });
-/*
+
 const sqlCreate = `
    CREATE TABLE IF NOT EXISTS carros
    (
@@ -23,7 +23,7 @@ pool.query(sqlCreate, function(error, result) {
      throw error
     console.log('Tabela criada com sucesso!');
 });
-*/
+
 module.exports = {
 async create(cor, modelo, placa) {
     const sql = 'INSERT INTO carros (cor, modelo, placa) VALUES ($1, $2, $3)';
