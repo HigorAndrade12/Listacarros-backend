@@ -1,10 +1,10 @@
 const Pool = require('pg').Pool; 
 
 const pool = new Pool({
-    user: 'lvzswkpjwiupvz',
-    password: 'c2d1a41f5cf9f1898c35f36c267be16fb0d59becc7d60a28eb3f9509d70250ce',
-    host: 'ec2-52-200-48-116.compute-1.amazonaws.com',
-    database: 'd9fngc9o5shpp9',
+    user: 'pjneyukgbrnkit',
+    password: '8b9c8f81b5a18b2bb2b5f01a2ff9b916d901946eaa9f45dde50b6c955e751bdf',
+    host: 'ec2-18-232-143-90.compute-1.amazonaws.com',
+    database: 'd1t5r0npukksqf',
     port: '5432',
     ssl: {rejectUnauthorized: false}
 });
@@ -36,11 +36,11 @@ async read() {
     const result = await pool.query(sql);
     return result.rows;
 },
-async update(id, item, valor, tamanho) {
+async update(id, cor, modelo, placa) {
     const sql = `UPDATE carros
-    SET carros = $1, valor= $2 , tamanho= $3
+    SET cor = $1, modelo= $2, placa= $3
     WHERE  id = $4`
-    const result = await pool.query(sql,[cor, modelo, placa, id]);
+    const result = await pool.query(sql,[id, cor, modelo, placa,]);
     return result.rowCount;
 },
 async delete(id){
