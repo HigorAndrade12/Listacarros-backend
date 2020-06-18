@@ -26,11 +26,14 @@ pool.query(sqlCreate, function(error, result) {
 
 module.exports = {
 
-async create(cor, modelo, placa) {
-    console;log(cor, modelo, placa)
-    const sql = 'INSERT INTO carros (cor, modelo, placa) VALUES ($1, $2, $3)';
-    const result = await pool.query(sql, [cor, modelo, placa]);
-    return result.rowCount;
+async  create(cor, modelo, placa) {
+const sql = ` INSERT INTO carros (cor, modelo, placa) 
+                            VALUES   ( $1, $2, $3)`;
+
+const result = await pool.query(sql, [cor, modelo, placa])
+
+return result.rowCount;
+    
 },
 
 async read() {
