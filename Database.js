@@ -43,8 +43,8 @@ async read() {
 },
 async update(id, cor, modelo, placa) {
     const sql = `UPDATE carros
-    SET cor = $1, modelo= $2, placa= $3
-    WHERE  id = $4`
+    SET cor = $2, modelo= $3, placa= $4
+    WHERE  id = $1`
     const result = await pool.query(sql,[id, cor, modelo, placa,]);
     return result.rowCount;
 },
